@@ -23,34 +23,37 @@ public class WizardNumber : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             comecar = true;
-            Debug.Log((maximo + minimo) / 2);
         }
-
-        if (Input.GetKeyDown(KeyCode.N))
+        else
         {
-            Debug.Log("Pensa logo!");
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                Debug.Log("Pensa logo!");
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.KeypadEnter))
+                {
+                    acerto = true;
+                }
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            acerto = true;
-        }
-
-        while (comecar == true & acerto == false)
+        while (comecar == true && acerto == false)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                
+                Debug.Log("fazer lógica maior");
             }
             if(Input.GetKeyDown(KeyCode.DownArrow))
             {
-                
+                Debug.Log("fazer lógica menor");
             }
         }
 
         if (acerto == true)
         {
-
+            
         }
     }
 }
