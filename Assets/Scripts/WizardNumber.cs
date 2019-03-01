@@ -20,40 +20,53 @@ public class WizardNumber : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        int valorPrintado = (maximo + minimo) / 2;
+
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            comecar = true;
+            acerto = true;
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.N))
+            if (Input.GetKeyDown(KeyCode.S))
             {
-                Debug.Log("Pensa logo!");
+                comecar = true;
+                Debug.Log("Bora começar então. Tó o primeiro número:");
+                Debug.Log(valorPrintado);
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.KeypadEnter))
+                if (Input.GetKeyDown(KeyCode.N))
                 {
-                    acerto = true;
+                    Debug.Log("Pensa logo!");
                 }
             }
         }
 
-        while (comecar == true && acerto == false)
+        while (comecar && acerto == false)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                Debug.Log("fazer lógica maior");
+                Debug.Log(valorPrintado + 1000 / 2);
+                valorPrintado = valorPrintado + 1000 / 2;
+
+                Debug.Log(valorPrintado);
             }
-            if(Input.GetKeyDown(KeyCode.DownArrow))
+            else
             {
-                Debug.Log("fazer lógica menor");
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    Debug.Log(valorPrintado / 2);
+                    valorPrintado = valorPrintado / 2;
+
+                    Debug.Log(valorPrintado);
+                }
             }
         }
 
-        if (acerto == true)
+        if (acerto)
         {
-            
+            Debug.Log("Seu número é " + valorPrintado + "!!!");
         }
     }
 }
