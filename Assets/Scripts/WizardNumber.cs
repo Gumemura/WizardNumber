@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WizardNumber : MonoBehaviour
 {
-    int maximo = 1000;
-    int minimo = 0;
+    public int maximo = 1000;
+    public int minimo = 0;
     bool comecar = false;
     bool acerto = false;
 
@@ -47,8 +47,8 @@ public class WizardNumber : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                Debug.Log(valorPrintado + 1000 / 2);
-                valorPrintado = valorPrintado + 1000 / 2;
+                Debug.Log((valorPrintado + maximo) / 2);
+                valorPrintado = (valorPrintado + maximo) / 2;
 
                 Debug.Log(valorPrintado);
             }
@@ -56,8 +56,8 @@ public class WizardNumber : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
-                    Debug.Log(valorPrintado / 2);
-                    valorPrintado = valorPrintado / 2;
+                    Debug.Log((valorPrintado + minimo)/ 2);
+                    valorPrintado = (valorPrintado + minimo) / 2;
 
                     Debug.Log(valorPrintado);
                 }
