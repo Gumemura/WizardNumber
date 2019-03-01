@@ -28,17 +28,20 @@ public class WizardNumber : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            while (comecar == false)
             {
-                comecar = true;
-                Debug.Log("Bora começar então. Tó o primeiro número:");
-                Debug.Log(valorPrintado);
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.N))
+                if (Input.GetKeyDown(KeyCode.S))
                 {
-                    Debug.Log("Pensa logo!");
+                    Debug.Log("Bora começar então. Tó o primeiro número:");
+                    Debug.Log(valorPrintado);
+                    comecar = true;
+                }
+                else
+                {
+                    if (Input.GetKeyDown(KeyCode.N))
+                    {
+                        Debug.Log("Pensa logo!");
+                    }
                 }
             }
         }
@@ -47,19 +50,15 @@ public class WizardNumber : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                Debug.Log((valorPrintado + maximo) / 2);
-                valorPrintado = (valorPrintado + maximo) / 2;
-
                 Debug.Log(valorPrintado);
+                valorPrintado = (valorPrintado + maximo) / 2;
             }
             else
             {
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
-                    Debug.Log((valorPrintado + minimo)/ 2);
-                    valorPrintado = (valorPrintado + minimo) / 2;
-
                     Debug.Log(valorPrintado);
+                    valorPrintado = (valorPrintado + minimo) / 2;
                 }
             }
         }
