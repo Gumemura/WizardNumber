@@ -6,66 +6,49 @@ public class WizardNumber : MonoBehaviour
 {
     public int maximo = 1000;
     public int minimo = 0;
-    bool comecar = false;
-    bool acerto = false;
+    int valorPrintado;
 
-    // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Pensar num número de " + minimo + " a " + maximo);
-        Debug.Log("Te darei um número. Seta para cima se seu número for maior, seta para baixo se menor, ou enter se for o número");
-        Debug.Log("Já pensou num número? (s/n)");
+        Debug.Log("Te darei um número. Seta para cima se seu número for maior, seta para baixo se menor, ou espaço se for o número");
+        Debug.Log("Bora começa. Primeiro número:");
+        valorPrintado = (maximo + minimo) / 2;
+        Debug.Log(valorPrintado);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        int valorPrintado = (maximo + minimo) / 2;
+        bool acerto = false;
+        bool comecar = true;
 
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             acerto = true;
-        }
-        else
-        {
-            while (comecar == false)
-            {
-                if (Input.GetKeyDown(KeyCode.S))
-                {
-                    Debug.Log("Bora começar então. Tó o primeiro número:");
-                    Debug.Log(valorPrintado);
-                    comecar = true;
-                }
-                else
-                {
-                    if (Input.GetKeyDown(KeyCode.N))
-                    {
-                        Debug.Log("Pensa logo!");
-                    }
-                }
-            }
+            comecar = false;
         }
 
-        while (comecar && acerto == false)
+        if((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)) && acerto == false && comecar)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                Debug.Log(valorPrintado);
+                minimo = valorPrintado;
                 valorPrintado = (valorPrintado + maximo) / 2;
+                Debug.Log(valorPrintado);
             }
-            else
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    Debug.Log(valorPrintado);
-                    valorPrintado = (valorPrintado + minimo) / 2;
-                }
+                maximo = valorPrintado;
+                valorPrintado = (valorPrintado + minimo) / 2;
+                Debug.Log(valorPrintado);
             }
         }
 
-        if (acerto)
+        else if (acerto)
         {
             Debug.Log("Seu número é " + valorPrintado + "!!!");
+            acerto = false;
+            comecar = false;
         }
     }
 }
