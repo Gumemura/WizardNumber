@@ -7,6 +7,8 @@ public class WizardNumber : MonoBehaviour
     public int maximo = 1000;
     public int minimo = 0;
     int valorPrintado;
+    bool acerto = false;
+    bool comecar = true;
 
     void Start()
     {
@@ -19,31 +21,37 @@ public class WizardNumber : MonoBehaviour
 
     void Update()
     {
-        bool acerto = false;
-        bool comecar = true;
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             acerto = true;
-            comecar = false;
         }
 
-        if((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)) && acerto == false && comecar)
+        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if(comecar)
             {
-                minimo = valorPrintado;
-                valorPrintado = (valorPrintado + maximo) / 2;
-                Debug.Log(valorPrintado);
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                maximo = valorPrintado;
-                valorPrintado = (valorPrintado + minimo) / 2;
-                Debug.Log(valorPrintado);
-            }
-        }
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    minimo = valorPrintado;
+                    valorPrintado = (valorPrintado + maximo) / 2;
+                    Debug.Log(valorPrintado);
+                }
 
+                else if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    maximo = valorPrintado;
+                    valorPrintado = (valorPrintado + minimo) / 2;
+                    Debug.Log(valorPrintado);
+                }
+            } 
+        }
+        
+        if(maximo - minimo == 2)
+        {
+            Debug.Log("Seu número é " + (maximo + minimo) / 2 + "!!!");
+            comecar = false;
+            maximo = 9999;
+        } 
         else if (acerto)
         {
             Debug.Log("Seu número é " + valorPrintado + "!!!");
